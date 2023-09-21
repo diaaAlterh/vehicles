@@ -1,0 +1,11 @@
+const String imageBackground = 'assets/images/background.png';
+const String imageLogo = 'assets/images/logo.png';
+const String imagePassword = 'assets/images/password.png';
+const String imagePerson = 'assets/images/person.png';
+const String imagePhone = 'assets/images/phone.png';
+const String imageCar = 'assets/images/car.png';
+const String imageAddImagePerson = 'assets/images/add_image_person.png';
+const String imagePlateNumber = 'assets/images/plate_number.png';
+const String imageVehicleColor = 'assets/images/vehicle_color.png';
+const String imageVehicleModel = 'assets/images/vehicle_model.png';
+const String imageVehicleType = 'assets/images/vehicle_type.png';

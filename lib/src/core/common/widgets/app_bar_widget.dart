@@ -12,7 +12,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Center(
+      leading:hasBackButton? Center(
         child: Container(
           margin: const EdgeInsetsDirectional.only(start: 8),
           height: 40,
@@ -30,7 +30,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ),
-      ),
+      ):null,
       title: Text(title, style: Theme.of(context).textTheme.headlineSmall),
     );
   }

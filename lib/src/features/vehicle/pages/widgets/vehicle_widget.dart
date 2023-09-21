@@ -23,53 +23,59 @@ class VehicleWidget extends StatefulWidget {
 class _VehicleWidgetState extends State<VehicleWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 500),
       margin: const EdgeInsets.symmetric(horizontal: 20),
-      child: Card(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-            side: BorderSide(
-              width: 4,
-              strokeAlign: BorderSide.strokeAlignCenter,
-              color: widget.isSelected ? AppColors.primary : Colors.transparent,
-            )),
-        child: TextButton(
-          onPressed: widget.onPressed,
-          style: TextButton.styleFrom(
-              padding: const EdgeInsets.all(20),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-          ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '${widget.vehicle.model ?? ''} ${widget.vehicle.boardNumber ?? ''}',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: widget.isSelected
-                            ? AppColors.primary
-                            : Colors.black),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x1E000000),
+              blurRadius: 13,
+              offset: Offset(0, 0),
+              spreadRadius: 0,
+            )
+          ],
+          border: Border.all(
+            width: 4,
+            strokeAlign: BorderSide.strokeAlignCenter,
+            color: widget.isSelected ? AppColors.primary : Colors.transparent,
+          )),
+      child: TextButton(
+        onPressed: widget.isSelected ? null : widget.onPressed,
+        style: TextButton.styleFrom(
+            padding: const EdgeInsets.all(20),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20))),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '${widget.vehicle.model ?? ''} ${widget.vehicle.boardNumber ?? ''}',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color:
+                          widget.isSelected ? AppColors.primary : Colors.black),
+                ),
+                Container(
+                  width: 64,
+                  height: 64,
+                  decoration: const ShapeDecoration(
+                    color: Color(0xFFEFF1F0),
+                    shape: OvalBorder(),
                   ),
-                  Container(
-                    width: 64,
-                    height: 64,
-                    decoration: const ShapeDecoration(
-                      color: Color(0xFFEFF1F0),
-                      shape: OvalBorder(),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(imageCar),
-                    ),
-                  )
-                ],
-              ),
-              detailRow(
-                  title: 'type'.tr, value: widget.vehicle.type?.name ?? ''),
-              detailRow(title: 'color'.tr, value: widget.vehicle.color ?? '')
-            ],
-          ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(imageCar),
+                  ),
+                )
+              ],
+            ),
+            detailRow(title: 'type'.tr, value: widget.vehicle.type?.name ?? ''),
+            detailRow(title: 'color'.tr, value: widget.vehicle.color ?? '')
+          ],
         ),
       ),
     );

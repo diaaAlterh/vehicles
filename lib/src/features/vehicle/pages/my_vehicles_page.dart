@@ -28,6 +28,7 @@ class _MyVehiclesPageState extends State<MyVehiclesPage> {
     return Scaffold(
       appBar: AppBarWidget(
         title: 'my_vehicles'.tr,
+        hasBackButton: false,
       ),
       bottomSheet: Container(
         color: Theme.of(context).scaffoldBackgroundColor,

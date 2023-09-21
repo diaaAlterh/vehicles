@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:vehicles/src/core/utils/helpers/general_methods.dart';
 import 'package:vehicles/src/core/utils/managers/shared_preferences_manager.dart';
@@ -46,6 +47,7 @@ class VehicleController extends GetxController {
 
   selectVehicle({required int id}) {
     selectedVehicleId(id);
+    HapticFeedback.lightImpact();
   }
 
   selectVehicleType({required int id}) {

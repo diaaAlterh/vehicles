@@ -29,7 +29,7 @@ class AuthController extends GetxController {
       SharedPreferencesManager.save(
           SharedPreferencesKeys.token, authModelResponse.data?.token ?? '');
       isLoading.value = false;
-      Get.off(() => const MyVehiclesPage());
+      Get.offAll(() => const MyVehiclesPage());
     } on DioException catch (error) {
       isLoading.value = false;
       errorMessage.value = errorParser(error);
@@ -51,7 +51,7 @@ class AuthController extends GetxController {
       SharedPreferencesManager.save(
           SharedPreferencesKeys.token, authModelResponse.data?.token ?? '');
       isLoading.value = false;
-      Get.off(() => const MyVehiclesPage());
+      Get.offAll(() => const MyVehiclesPage());
     } on DioException catch (error) {
       isLoading.value = false;
       errorMessage.value = errorParser(error);

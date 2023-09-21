@@ -9,6 +9,7 @@ import 'package:vehicles/src/features/vehicle/pages/widgets/vehicle_images_uploa
 import 'package:vehicles/src/features/vehicle/pages/widgets/vehicle_type_dropdown.dart';
 
 import '../../../core/common/widgets/loading_widget.dart';
+import '../logic/vehicle_controller.dart';
 import 'widgets/vehicle_model_field.dart';
 
 class AddVehiclePage extends StatefulWidget {
@@ -21,6 +22,7 @@ class AddVehiclePage extends StatefulWidget {
 class _AddVehiclePageState extends State<AddVehiclePage> {
   final AddVehicleController addVehicleController =
       Get.put(AddVehicleController(), tag: 'add_vehicle');
+  final VehicleController vehicleController = Get.find(tag: 'vehicle');
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController controllerModel = TextEditingController();
   TextEditingController controllerPlate = TextEditingController();
@@ -134,6 +136,7 @@ class _AddVehiclePageState extends State<AddVehiclePage> {
               model: controllerModel.text, plateNumber: controllerPlate.text)
           .then((value) {
         if (addVehicleController.errorMessage.value.isEmpty) {
+          vehicleController.myVehicles();
           Get.back();
           Get.showSnackbar(GetSnackBar(
             message: 'request_progress'.tr,
@@ -160,9 +163,9 @@ class _AddVehiclePageState extends State<AddVehiclePage> {
     }
   }
 
-@override
-void dispose() {
-  addVehicleController.dispose();
-  super.dispose();
-}
+  @override
+  void dispose() {
+    addVehicleController.dispose();
+    super.dispose();
+  }
 }

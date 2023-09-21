@@ -46,6 +46,7 @@ class Messages extends Translations {
           "model_validation_error": "الموديل يجب ان يكون 3 أحرف على الأقل",
           "plate_validation_error": "رفم اللوحة يجب ان يكون 6 أحرف على الأقل",
           "images_validation_error": "عدد الصور يجب ان يكون 5 على الأقل",
+          "no_vehicles": "لا يوجد مركبات مضافة",
         },
       };
 }

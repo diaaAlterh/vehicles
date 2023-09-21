@@ -48,23 +48,33 @@ class _MyVehiclesPageState extends State<MyVehiclesPage> {
           return Column(
             children: [
               Expanded(
-                child: ListView.separated(
-                  padding: const EdgeInsets.all(20),
-                  itemBuilder: (context, index) {
-                    final vehicle = vehicles[index];
-                    return VehicleWidget(
-                      key: Key(vehicle.id.toString()),
-                      vehicle: vehicle,
-                      isSelected: vehicle.id == selectedVehicleId,
-                      onPressed: () =>
-                          vehicleController.selectVehicle(id: vehicle.id ?? 1),
-                    );
-                  },
-                  separatorBuilder: (context, index) => const SizedBox(
-                    height: 20,
-                  ),
-                  itemCount: vehicles.length,
-                ),
+                child: (vehicles.isNotEmpty)
+                    ? ListView.separated(
+                        padding: const EdgeInsets.all(20),
+                        itemBuilder: (context, index) {
+                          final vehicle = vehicles[index];
+                          return VehicleWidget(
+                            key: Key(vehicle.id.toString()),
+                            vehicle: vehicle,
+                            isSelected: vehicle.id == selectedVehicleId,
+                            onPressed: () => vehicleController.selectVehicle(
+                                id: vehicle.id ?? 1),
+                          );
+                        },
+                        separatorBuilder: (context, index) => const SizedBox(
+                          height: 20,
+                        ),
+                        itemCount: vehicles.length,
+                      )
+                    : Center(
+                      child: Text(
+                          'no_vehicles'.tr,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(fontWeight: FontWeight.w700),
+                        ),
+                    ),
               ),
               const SizedBox(height: 80),
             ],

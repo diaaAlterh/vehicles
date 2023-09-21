@@ -6,31 +6,35 @@ import '../../constants/app_colors.dart';
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool hasBackButton;
+  final Widget? leading;
 
-  const AppBarWidget({super.key, this.title = '', this.hasBackButton = true});
+  const AppBarWidget(
+      {super.key, this.title = '', this.hasBackButton = true, this.leading});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading:hasBackButton? Center(
-        child: Container(
-          margin: const EdgeInsetsDirectional.only(start: 8),
-          height: 40,
-          width: 40,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                elevation: 2,
-                backgroundColor: Colors.white,
-                padding: const EdgeInsetsDirectional.only(start: 8),
-                foregroundColor: AppColors.primary),
-            onPressed: () =>Get.back(),
-            child: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            ),
-          ),
-        ),
-      ):null,
+      leading: hasBackButton
+          ? Center(
+              child: Container(
+                margin: const EdgeInsetsDirectional.only(start: 8),
+                height: 40,
+                width: 40,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      elevation: 2,
+                      backgroundColor: Colors.white,
+                      padding: const EdgeInsetsDirectional.only(start: 8),
+                      foregroundColor: AppColors.primary),
+                  onPressed: () => Get.back(),
+                  child: const Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            )
+          : leading,
       title: Text(title, style: Theme.of(context).textTheme.headlineSmall),
     );
   }

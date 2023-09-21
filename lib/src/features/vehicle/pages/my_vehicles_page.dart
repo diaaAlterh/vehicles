@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vehicles/src/core/common/widgets/app_bar_widget.dart';
 import 'package:vehicles/src/core/common/widgets/loading_widget.dart';
+import 'package:vehicles/src/core/utils/managers/shared_preferences_manager.dart';
+import 'package:vehicles/src/features/auth/pages/login_page.dart';
 import 'package:vehicles/src/features/vehicle/logic/vehicle_controller.dart';
 import 'package:vehicles/src/features/vehicle/pages/add_vehicle_page.dart';
 import 'package:vehicles/src/features/vehicle/pages/widgets/vehicle_widget.dart';
+
+import '../../../core/constants/app_colors.dart';
 
 class MyVehiclesPage extends StatefulWidget {
   const MyVehiclesPage({super.key});
@@ -29,6 +33,16 @@ class _MyVehiclesPageState extends State<MyVehiclesPage> {
       appBar: AppBarWidget(
         title: 'my_vehicles'.tr,
         hasBackButton: false,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.logout,
+            color: AppColors.primary,
+          ),
+          onPressed: () async {
+            await SharedPreferencesManager.clearValue(SharedPreferencesKeys.token);
+            Get.offAll(const LoginPage());
+          },
+        ),
       ),
       bottomSheet: Container(
         color: Theme.of(context).scaffoldBackgroundColor,
@@ -67,14 +81,14 @@ class _MyVehiclesPageState extends State<MyVehiclesPage> {
                         itemCount: vehicles.length,
                       )
                     : Center(
-                      child: Text(
+                        child: Text(
                           'no_vehicles'.tr,
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge
                               ?.copyWith(fontWeight: FontWeight.w700),
                         ),
-                    ),
+                      ),
               ),
               const SizedBox(height: 80),
             ],
